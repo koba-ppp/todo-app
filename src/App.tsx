@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 });
 
 const App: React.FC = (props: any) => {
+  //Qなんでpropsを受け取ってるのか？ A
   const [tasks, setTasks] = useState([{ id: "", title: "" }]); //複数のオブジェクトを内包した配列
   const [input, setInput] = useState("");
   const classes = useStyles();
@@ -31,6 +32,8 @@ const App: React.FC = (props: any) => {
     });
     return () => unSub(); //useEffectではマウント時に実行した処理をアンマウント時に解除する処理が必要となる
   }, [props.history]);
+  //useEffectに渡された関数はレンダーの結果が画面に反映された後に動作する
+  //つまり上の関数はレンダーの結果が画面に反映された後に認証関係に変化があったかを調べて
 
   useEffect(() => {
     const unSub = db.collection("tasks").onSnapshot((snapshot) => {
